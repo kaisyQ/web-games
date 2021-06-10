@@ -1,16 +1,26 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const User = require('./User');
-
-
-const app = express();
+const exphbs = require('express-handlebars');
+const Routes = require('./routes/routes');
 
 const PORT = process.env.PORT || 3000;
 
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+const app = express();
+
+const hbs = exphbs.create({
+    defaultLayout: 'main',
+    extname: 'hbs'
+});
 
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.engine('hbs', hbs.engine);
+app.set('view engine', 'hbs');
+app.set('views', 'views');
+
+
+app.use(Routes);
 
 async function startServer(){
     try{
@@ -31,23 +41,3 @@ async function startServer(){
 };
 
 startServer().then(res => console.log('Successfully'));
-
-app.get('/', (request, response) => {
-    response.sendFile(__dirname + '/pages/dist/index.html');  
-});
-
-app.post('/', (request, response) => {
-    console.log(request.body);
-});
-
-app.get('/forms.html', (request, response) => {
-    response.sendFile(__dirname + '/pages/dist/forms.html');
-});
-
-app.post('/forms.html'  , (request, response) => {
-    console.log(request.body);
-});
-
-app.get('/profile.html', (request, response) => {
-    response.sendFile(__dirname + '/pages/dist/profile.html');
-});
