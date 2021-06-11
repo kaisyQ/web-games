@@ -12,15 +12,15 @@ const hbs = exphbs.create({
     extname: 'hbs'
 });
 
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 app.set('views', 'views');
 
-
 app.use(Routes);
+app.use(express.static(__dirname + '/public'));
 
 async function startServer(){
     try{
@@ -32,7 +32,6 @@ async function startServer(){
         app.listen(PORT, () => {
             console.log(`Server is running on ${PORT}...`);
         });
-        
 
     }
     catch(err){
