@@ -1,3 +1,3 @@
 module.exports = {
-    jwtkey: 'viva la pas'
+    jwtkey: 'Viva la Torettos familia'
 }
