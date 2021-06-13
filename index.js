@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const exphbs = require('express-handlebars');
 const Routes = require('./routes/routes');
+const passport = require('passport');
+const passportInf = require('./passport');
 
 const PORT = process.env.PORT || 3000;
 
@@ -21,6 +23,10 @@ app.set('views', 'views');
 
 app.use(Routes);
 app.use(express.static(__dirname + '/public'));
+
+app.use(passport.initialize());
+passportInf(passport);
+
 
 async function startServer(){
     try{

@@ -2,12 +2,12 @@ const bcrypt = require('bcryptjs');
 const config = require('./config');
 const jwt = require('jsonwebtoken');
 const { body, validationResult } = require('express-validator');
-const User = require('./User')
+const User = require('./User');
 
-const generateToken = (email, login) => {
+const generateToken = (email, id) => {
     const userObj = {
         email: email, 
-        login: login
+        id: id
     };
     return jwt.sign(userObj, config.jwtkey, {expiresIn: "24h"});
 }
@@ -41,14 +41,11 @@ class Auntification{
                         
                         addingUser.save();
 
-                        response.render('layouts/main',{
-                            title: 'Project | Home',
-                            isIndexPage: true
-                        });
+                        response.redirect('/');
                     }
                     else{
-                        console.log('found in database')
-                        response.status(401)
+                        console.log('found in database');
+                        response.status(401);
                     }
             })
         }
@@ -63,8 +60,7 @@ class Auntification{
         else{
             const validPasswd = bcrypt.compareSync(request.body.password, user.password);
             if(validPasswd){
-                const token = generateToken(user.email, user.userName);
-                return response.json(token);
+                const token = generateToken(user.email, user._id);
             }
         }
     }
