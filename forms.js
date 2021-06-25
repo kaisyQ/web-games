@@ -6,12 +6,12 @@ const session = require('express-session')
 class Auntification{
 
         async Registr(request, response){
-            const errors = validationResult(request);   
-            if(!errors.isEmpty())
+            const errors = validationResult(request); 
+            if(!errors.isEmpty()){
                 return response.redirect('/');
+            }
             else{
                 const condidate = await User.findOne({email: request.body.email});
-
                 if(!condidate){
                     const passwordHash = bcrypt.hashSync(request.body.password);
 
