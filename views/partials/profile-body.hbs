@@ -1,0 +1,81 @@
+<body>
+    <div class="page">
+       <img src="anime.png" alt="" class="anime">
+      <img src="deadpool.png" alt="" class="deadpool">
+        <!-- Header -->
+        <header class="header">
+           <div class="container">
+              <div class="header__inner">
+                 <div class="header__brand">Brand</div>
+        
+                 <nav class="nav">
+
+                    <ul class="nav__list">
+                       <li class="nav__item">
+                          <a class="nav__link" href="/" >Главная</a>
+                       </li>
+        
+                       <li class="nav__item">
+                          <a class="nav__link" href="/library">Библиотека</a>
+                       </li>
+                         {{#if notAuth}}
+                       <li class="nav__item">
+                          <div class="nav__link user-subnav" id="signed-in">{{name}}</div>
+        
+                          <ul class="subnav">
+                             <li>
+                                <a class="subnav__link" href="/profile">Профиль</a>
+                             </li>
+                             <li>
+                                <a class="subnav__link" href="/logout">Выйти</a>
+                             </li>
+                          </ul>
+                       </li>
+                        {{else}}
+                       <li class="nav__item">
+                          <a class="nav__link" href="/forms">Войти</a>
+                       </li>
+                       {{/if}}
+                    </ul>
+        
+                 </nav>
+              </div>
+           </div>
+        </header>
+        <!-- Main -->
+         <div class="container">
+            
+            <main class="main main--components">
+            
+               <div class="dynamic__component  dynamic__component--score">
+                  <div class="form form--game">
+
+                     <div class="form__group game">
+                        <div class="form__gamename">CrazyBird</div>
+                        <input class="form__control score" type="text" value="{{FlappyScore}}" readonly>
+                        <span class="form__line"></span>
+                     </div>
+
+                     <div class="form__group game">
+                        <div class="form__gamename">Snake</div>
+                        <input class="form__control score" type="text" value="{{SnakeScore}}" readonly>
+                        <span class="form__line"></span>
+                     </div>
+
+                     <div class="form__group game">
+                        <div class="form__gamename">Сапёр</div>
+                        <input class="form__control score" type="text" value="{{SapperScore}}" readonly>
+                        <span class="form__line"></span>
+                     </div>
+                  </div>
+               </div>
+            
+            </main>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="app.js"></script>
+
+</body>

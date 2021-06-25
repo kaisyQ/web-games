@@ -1,5 +1,20 @@
 <html>
     {{> head}}  
     
-    {{>body}}
+    {{#if isProfilePage}}
+        {{>profile-body}}
+    {{/if}}
+
+    {{#if isIndexPage}}
+        {{>index-body}}
+    {{/if}}
+    
+    {{#if isFormPage}}
+        {{>forms-body}}
+    {{/if}}
+
+    {{#if isLibraryPage}}
+        {{>library-body}}
+    {{/if}}
+
 </html>

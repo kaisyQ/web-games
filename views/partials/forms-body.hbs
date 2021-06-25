@@ -1,0 +1,57 @@
+<body>
+    <div class="page">
+       <img src="anime.png" alt="" class="anime">
+        <img src="deadpool.png" alt="" class="deadpool">
+        <!-- Header -->
+        <header class="header">
+           <div class="container">
+              <div class="header__inner">
+                 <div class="header__brand">Brand</div>
+        
+                 <nav class="nav">
+                    <ul class="nav__list">
+                       <li class="nav__item">
+                          <a class="nav__link" href="/" >Главная</a>
+                       </li>
+        
+                       <li class="nav__item">
+                          <a class="nav__link" href="/library">Библиотека</a>
+                       </li>
+        
+                       <li class="nav__item">
+                          <a class="nav__link" href="/forms">Войти</a>
+                       </li>
+                    </ul>
+        
+                 </nav>
+              </div>
+           </div>
+        </header>
+        <!-- Main -->
+        <div class="container">
+            
+            <main class="main main--components">
+            
+               <div id="dynamic-forms" class="dynamic__component">
+                  <button
+                     v-for="form in forms"
+                     :key="form"
+                     :class="['dynamic__btn', { active: currentForm === form.keyword }]"
+                     @click="currentForm = form.keyword"
+                     >
+                     ${ form.name }$
+                     <span class="dynamic__line"></span>
+                  </button>
+            
+                  <component :is="currentFormComponent"></component>
+               </div>
+            
+            </main>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="app.js"></script>
+
+</body>
